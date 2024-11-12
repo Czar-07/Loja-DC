@@ -1,0 +1,421 @@
+/* cabeçalho e rodape */
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+
+    font-family: sans-serif;
+}
+
+
+/* Cabecalho */
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+header div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header nav > ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    list-style-type: none;
+}
+
+header nav > ul > li{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+header nav > ul > li > a{
+    text-decoration: none;
+    color: rgb(156, 3, 3);
+    font-size: 1.3em;
+}
+
+header nav > ul > li > a:hover{
+    color: skyblue;
+    transition: 0.5 ease;
+}
+
+/* Rodapé */
+footer{
+    height: 200px;
+    background-color: black;
+    color: white;
+}
+
+footer ul{
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+footer ul > li{
+    padding: 10px;
+    list-style-type: none;
+    border-right: 1px solid white;
+}
+
+footer ul > li > a{
+    text-decoration: none;
+    color: white;
+}
+
+footer > h2{
+    text-align: center;
+    padding: 20px;
+}
+
+/* Estilo para o contêiner do carrossel */
+.div-slider {
+    width: auto; /* Largura automática */
+    height: 400px; /* Altura do carrossel */
+    text-align: center; /* Centraliza o conteúdo textualmente */
+    padding-bottom: 200px;
+}
+
+/* Estilo para o contêiner dos slides */
+.slides-front {
+    padding: 0; /* Remove o preenchimento */
+    width: 980px; /* Largura do carrossel */
+    height: 370px; /* Altura do carrossel */
+    display: block; /* Exibe o contêiner como bloco */
+    margin: auto; /* Centraliza o contêiner horizontalmente */
+    position: relative; /* Permite posicionamento absoluto dos filhos */
+}
+
+/* Desativa a seleção de texto para todos os elementos dentro de slides-front */
+.slides-front * {
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* Esconde os inputs de controle dos slides */
+.slides-front input {
+    display: none;
+}
+
+/* Estilo para o contêiner dos slides */
+.slide-container {
+    display: block; /* Exibe o contêiner como bloco */
+}
+
+/* Estilo para cada slide */
+.slide {
+    top: 0; /* Posiciona o slide no topo do contêiner */
+    opacity: 0; /* Torna o slide invisível inicialmente */
+    width: 980px; /* Largura do slide */
+    height: 500px; /* Altura do slide */
+    display: block; /* Exibe o slide como bloco */
+    position: absolute; /* Posiciona o slide absolutamente dentro do contêiner */
+    transform: scale(0); /* Inicialmente escala o slide para 0 */
+    transition: all .7s ease-in-out 0.1s; /* Transição suave para todas as propriedades */
+}
+
+/* Estilo para a imagem dentro de cada slide */
+.slide img {
+    width: 100%; /* Largura da imagem é 100% do slide */
+    height: 100%; /* Altura da imagem é 100% do slide */
+    border-radius: 10px; /* Bordas arredondadas */
+}
+
+/* Estilo para os botões de navegação (setas) */
+.nav label {
+    width: 150px; /* Largura dos botões de navegação */
+    height: 100%; /* Altura dos botões de navegação */
+    display: none; /* Inicialmente escondido */
+    position: absolute; /* Posiciona o botão absolutamente */
+    opacity: 0; /* Torna o botão invisível */
+    z-index: 9; /* Define a ordem de empilhamento (acima dos slides) */
+    cursor: pointer; /* Muda o cursor para uma mão ao passar por cima */
+    transition: opacity .2s; /* Transição suave para a opacidade */
+    color: rgb(255, 255, 255); /* Cor do texto dos botões de navegação */
+    font-size: 156pt; /* Tamanho da fonte */
+    text-align: center; /* Centraliza o texto */
+    line-height: 480px; /* Altura da linha igual à altura dos botões de navegação */
+    font-family: "Varela Round", sans-serif; /* Fonte dos botões de navegação */
+    background-color: rgba(255, 255, 255, 0); /* Cor de fundo transparente */
+    text-shadow: 0px 0px 15px rgb(119, 119, 119); /* Sombra do texto */
+}
+
+/* Mostra os botões de navegação quando o slide é hover (passa o mouse sobre) */
+.slide:hover + .nav label {
+    opacity: 0.5; /* Torna o botão parcialmente visível */
+}
+
+/* Mostra o botão de navegação quando o mouse passa por cima */
+.nav label:hover {
+    opacity: 1; /* Torna o botão totalmente visível */
+}
+
+/* Posiciona o botão de navegação para avançar slides no lado direito */
+.nav .next {
+    right: 0; /* Alinha à direita */
+}
+
+/* Estilo aplicado aos slides quando o input de controle está checado */
+input:checked + .slide-container .slide {
+    opacity: 1; /* Torna o slide visível */
+    transform: scale(1); /* Restaura a escala do slide para 1 */
+    transition: opacity 1s ease-in-out 0.1s; /* Transição suave para a opacidade */
+}
+
+/* Mostra os botões de navegação quando o input de controle está checado */
+input:checked + .slide-container .nav label {
+    display: block; /* Torna os botões de navegação visíveis */
+}
+
+/* Estilo para os pontos de navegação (indicadores) */
+.nav-dots {
+    width: 100%; /* Largura total do contêiner de pontos */
+    bottom: 9px; /* Posiciona na parte inferior */
+    height: 11px; /* Altura dos pontos */
+    display: block; /* Exibe o contêiner como bloco */
+    position: relative; /* Posiciona relativamente */
+    text-align: center; /* Centraliza os pontos */
+}
+
+/* Estilo para cada ponto de navegação */
+.nav-dots .nav-dot {
+    top: 450px; /* Posiciona os pontos mais abaixo no carrossel */
+    width: 11px; /* Largura dos pontos */
+    height: 11px; /* Altura dos pontos */
+    margin: 0 4px; /* Espaçamento entre os pontos */
+    position: relative; /* Posiciona relativamente */
+    border-radius: 100%; /* Faz os pontos serem circulares */
+    display: inline-block; /* Exibe os pontos em linha */
+    background-color: rgba(0, 0, 0, 0.6); /* Cor de fundo dos pontos */
+}
+
+/* Muda a cor dos pontos quando o mouse passa por cima */
+.nav-dots .nav-dot:hover {
+    cursor: pointer; /* Muda o cursor para uma mão ao passar por cima */
+    background-color: rgba(0, 0, 0, 0.8); /* Torna o fundo mais escuro */
+}
+
+/* Muda a cor dos pontos quando o input correspondente está checado */
+input#img-1:checked ~ .nav-dots label#img-dot-1,
+input#img-2:checked ~ .nav-dots label#img-dot-2,
+input#img-3:checked ~ .nav-dots label#img-dot-3 {
+    background: rgba(0, 0, 0, 0.8); /* Torna o ponto correspondente mais escuro */
+}
+
+/* Efeito de zoom quando um elemento com a classe 'efeito' é hover */
+.efeito:hover {
+    cursor: pointer; /* Muda o cursor para uma mão ao passar por cima */
+    transition-duration: 1s; /* Duração da transição */
+    transform: scale(1.3, 1.3); /* Aumenta o tamanho do elemento em 1.3x */
+}
+
+.dropdown{
+    text-align: center;
+    align-items: center;
+    display: block;
+    
+}
+
+li a:hover{
+    color: #0026ff;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+   
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #000000;
+    padding: 20px 0;
+    text-align: center;
+    
+}
+
+nav {
+    float: right;
+    
+   
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 30px;
+    position: 30px;
+    
+}
+
+
+/* CSS 2 */
+ 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    
+}
+
+#teste table{
+    background-image: url(https://i.pinimg.com/564x/d1/78/fc/d178fcc0881f03d0788c8acff3292abe.jpg);
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 70px;
+    text-align: center;
+    align-items: center;
+    display: block;
+}
+
+h2{ 
+    font-size: 3em;
+    margin-bottom: 70px;
+    text-align: center;
+    align-items: center;
+    display: block;
+}
+
+p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    text-align: center;
+    align-items: center;
+    display: block;
+}
+
+
+
+.hero-image {
+    text-align: center;
+    margin-bottom: 20px;
+    
+}
+
+.hero-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.hero-section-2{
+    text-align: center;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+}
+
+.container-banner{
+    
+    width: 90%;
+   
+}
+
+/* CSS 3 */
+
+.product-grid {
+    display: flex;
+    gap: 20px;
+}
+
+.product-card {
+    border: 1px solid #bbff00;
+    padding: 10px;
+    text-align: center;
+}
+
+.product-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+
+
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #bbff00;
+}
+  
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+  
+td {
+    text-align: center;
+    padding: 20px;
+}
+  
+img {
+    max-width: 100%;
+    height: auto;
+}
+  
+.container {
+    position: relative;
+    color: #ffffff;
+}
+  
+.text {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    color: rgb(255, 0, 0);
+    font-size: 20px;
+}
+  
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    align-items: center;
+    display: block;
+}
+
+/* CSS 5 */
+.container {
+    display: flex;
+    background-color: #181818;
+}
+
+.image {
+    width: 50%; /* Cada imagem ocupa 50% da largura do container */
+    background-color: #222;
+}
+
